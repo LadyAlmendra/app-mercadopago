@@ -8,6 +8,8 @@ export const createOrder = async (req, res) => {
     });
 
     const result = await mercadopago.preferences.create({
+
+        // Recibe un arreglo de los items de la preferencia de la compra
         items: [
             {
                 id: 1234,
@@ -19,6 +21,8 @@ export const createOrder = async (req, res) => {
                 unit_price: 540.56
             }
         ],
+
+        // Recibe un arreglo de con los datos de las personas compradara
         payer: {
             name: 'Lalo',
             surname: 'Landa',
@@ -35,6 +39,7 @@ export const createOrder = async (req, res) => {
 
         },
         external_reference: 'almendraromina1@gmail.com',
+        // redirecciona dependiedo el estado del pago
         back_urls: {
             success: `${HOTS}/success`,
             failure: `${HOTS}/failure`,
@@ -45,22 +50,22 @@ export const createOrder = async (req, res) => {
         payment_methods: {
             excluded_payment_methods: [
                 {
-                    id: "visa"
+
                 }
             ],
-            installments: 6
         },
 
     });
-    // console.log(result.body.init_point);
-    // res.send(result.body.init_point);
 
+
+    // Devuelve al front un link de pago de mercadopago
     const initPoint = result.body.init_point;
-    console.log(initPoint);
-
     res.json({ initPoint });
 };
 
+
+
+// Notificación 
 export const resultWebhook = async (req, res) => {
     try {
         const payment = req.query;
