@@ -1,0 +1,5 @@
+# No subir a github
+/node_modules
+/result
+ngrok.exe
+.env
