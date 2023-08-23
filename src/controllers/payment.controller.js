@@ -1,5 +1,5 @@
 import mercadopago from "mercadopago";
-import { ACCESS_TOKEN, HOTS, INTEGRATOR_ID, NOTIF_URL } from "../config.js";
+import { ACCESS_TOKEN, INTEGRATOR_ID, HOTS, NOTIF_URL} from "../config/config.js";
 
 export const createOrder = async (req, res) => {
     mercadopago.configure({
@@ -7,6 +7,7 @@ export const createOrder = async (req, res) => {
         integrator_id: INTEGRATOR_ID,
     });
 
+    // Crea la preferencia del pago
     const result = await mercadopago.preferences.create({
 
         // Recibe un arreglo de los items de la preferencia de la compra
@@ -18,7 +19,7 @@ export const createOrder = async (req, res) => {
                 picture_url: "https://ladytoxic.com.ar/assets/LadyToxic%20logo2.png",
                 quantity: 1,
                 currency_id: 'ARS',
-                unit_price: 540.56
+                unit_price: 540.5
             }
         ],
 
@@ -36,7 +37,6 @@ export const createOrder = async (req, res) => {
                 street_name: "calle",
                 street_number: 123,
             }
-
         },
         external_reference: 'almendraromina1@gmail.com',
         // redirecciona dependiedo el estado del pago
@@ -54,16 +54,12 @@ export const createOrder = async (req, res) => {
                 }
             ],
         },
-
     });
-
 
     // Devuelve al front un link de pago de mercadopago
     const initPoint = result.body.init_point;
     res.json({ initPoint });
 };
-
-
 
 // Notificación 
 export const resultWebhook = async (req, res) => {

@@ -1,6 +1,6 @@
 import express from "express";
 import indexRoutes from './routes/index.routes.js';
-import { PORT } from "./config.js";
+import { PORT } from "./config/config.js";
 import morgan from "morgan";
 import cors from 'cors';
 
