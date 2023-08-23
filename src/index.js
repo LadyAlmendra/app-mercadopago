@@ -1,3 +1,5 @@
+import 'dotenv/config.js';
+import './config/db.js';
 import express from "express";
 import indexRoutes from './routes/index.routes.js';
 import { PORT } from "./config/config.js";
