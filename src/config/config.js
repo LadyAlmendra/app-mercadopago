@@ -1,5 +1,5 @@
 import 'dotenv/config.js';
-export const PORT = process.env.PORT || 3000;
+export const PORT = process.env.PORT || 8000;
 
 // URL del front
 export const HOTS = process.env.HOTS;
