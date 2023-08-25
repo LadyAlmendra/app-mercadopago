@@ -19,7 +19,7 @@ export const createOrder = async (req, res) => {
                 picture_url: "https://ladytoxic.com.ar/assets/LadyToxic%20logo2.png",
                 quantity: 1,
                 currency_id: 'ARS',
-                unit_price: 540.5
+                unit_price: 540.50
             }
         ],
 
