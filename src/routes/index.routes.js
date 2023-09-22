@@ -1,8 +1,8 @@
-import { Router } from "express";
+import express from "express";
 import payments from "./payment.routes.js";
 import { HOTS2 } from "../config/config.js";
 
-const router = Router();
+const router = express.Router();
 router.get('/', (req, res) => {
     console.log(HOTS2)
     res.send(`

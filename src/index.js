@@ -14,6 +14,6 @@ app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 app.use(cors());
-app.use(indexRoutes);
+app.use('/', indexRoutes);
 
 app.listen(PORT, () => console.log('Server running on port:', PORT));
