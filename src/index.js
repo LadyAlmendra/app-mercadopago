@@ -16,5 +16,4 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(indexRoutes);
 
-app.listen(PORT);
-console.log('Servidor funcionado en el puerto', PORT);
+app.listen(PORT, () => console.log('Server running on port:', PORT));

@@ -10,8 +10,12 @@ const controllers = {
                 throw new Error('El cuerpo de la solicitud está vacío.');
             }
 
-            if (items) {
-                console.log(items);
+
+            const items = req.body;
+
+            // Verifica si items es nulo o está vacío
+            if (!items || Object.keys(items).length === 0) {
+                throw new Error('El objeto "items" es nulo o está vacío.');
             }
 
             mercadopago.configure({
