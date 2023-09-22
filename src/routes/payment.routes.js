@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { createOrder, resultWebhook } from "../controllers/payment.controller.js";
+import controllers from "../controllers/payment.controller.js";
 
 const router = Router();
 
 // Crea la orden de pago con mercadopago
-router.get('/create-order', createOrder);
+router.get('/create-order', controllers.createOrder);
 
 // Noticaciones de pagos de la aplicación
-router.post('/webhook', resultWebhook);
+router.post('/webhook', controllers.resultWebhook);
 
 export default router;

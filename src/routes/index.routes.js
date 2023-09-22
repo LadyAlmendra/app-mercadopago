@@ -14,3 +14,4 @@ router.get('/', (req, res) => {
 router.use('/payment-mercadopago', payments);
 
 export default router;
+
