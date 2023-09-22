@@ -10,8 +10,9 @@ const controllers = {
                 throw new Error('El cuerpo de la solicitud está vacío.');
             }
 
-            const items = req.body
-            console.log(items)
+            if (items) {
+                console.log(items);
+            }
 
             mercadopago.configure({
                 access_token: ACCESS_TOKEN,
@@ -63,7 +64,7 @@ const controllers = {
         }
 
         catch (error) {
-            console.error('Error al crear la orden:', error);
+            console.error('Error al crear la orden:');
             res.status(500).json({ message: 'Error al procesar la solicitud' });
         }
     },
