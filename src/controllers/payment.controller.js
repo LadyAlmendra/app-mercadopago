@@ -9,13 +9,13 @@ const controllers = {
             if (!req.body) {
                 throw new Error('El cuerpo de la solicitud está vacío.');
             }
-
-
-            const items = req.body;
-
+    
+            // Extrae items y back_urls del cuerpo de la solicitud
+            const { items, back_urls } = req.body;
+    
             // Verifica si items es nulo o está vacío
-            if (!items || Object.keys(items).length === 0) {
-                throw new Error('El objeto "items" es nulo o está vacío.');
+            if (!items || items.length === 0) {
+                throw new Error('El arreglo "items" es nulo o está vacío.');
             }
 
             mercadopago.configure({
@@ -23,9 +23,10 @@ const controllers = {
                 integrator_id: INTEGRATOR_ID,
             });
 
+            console.log(items, back_urls)
             // Crea la preferencia del pago
             const result = await mercadopago.preferences.create({
-
+                
                 // Recibe un arreglo de los items de la preferencia de la compra
                 items: items,
 
@@ -36,7 +37,7 @@ const controllers = {
                     email: 'test_user_36961754@testuser.com',
                     phone: {
                         area_code: "549",
-                        number: 1162305649,
+                        number: 112233445566,
                     },
                     address: {
                         zip_code: "1854",
@@ -44,13 +45,10 @@ const controllers = {
                         street_number: 123,
                     }
                 },
-                external_reference: 'almendraromina1@gmail.com',
+                external_reference: 'puff@gmail.com',
                 // redirecciona dependiedo el estado del pago
-                back_urls: {
-                    success: `${HOTS}/success`,
-                    failure: `${HOTS}/failure`,
-                    pending: `${HOTS}/pending`,
-                },
+                // Utiliza las back_urls recibidas del frontend,
+                back_urls, 
                 notification_url: NOTIF_URL,
                 auto_return: "approved",
                 payment_methods: {
@@ -63,13 +61,13 @@ const controllers = {
             });
 
             // Devuelve al front un link de pago de mercadopago
-            const initPoint = result.body.init_point;
-            res.json({ initPoint });
+            const preferenceId = result.body.id;
+            res.json({ preferenceId});
         }
 
         catch (error) {
-            console.error('Error al crear la orden:');
-            res.status(500).json({ message: 'Error al procesar la solicitud' });
+            console.error('Error al crear la orden:', error);
+            res.status(500).json({ message: 'Error al procesar la solicitud'});
         }
     },
 
