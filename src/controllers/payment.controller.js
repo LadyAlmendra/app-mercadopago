@@ -34,7 +34,7 @@ const controllers = {
                 payer: {
                     name: 'Cafe Toxic',
                     surname: 'Muy',
-                    email: '',
+                    email: 'hola@hola.com',
                     phone: {
                         area_code: "549",
                         number: 112233445566,
