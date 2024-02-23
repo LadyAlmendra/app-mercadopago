@@ -32,9 +32,9 @@ const controllers = {
 
                 // Recibe un arreglo de con los datos de las personas compradara
                 payer: {
-                    name: 'Cafe Toxic',
-                    surname: 'Muy',
-                    email: 'hola@hola.com',
+                    // name: 'Cafe Toxic',
+                    // surname: 'Muy',
+                    // email: 'hola@hola.com',
                     phone: {
                         area_code: "549",
                         number: 112233445566,
