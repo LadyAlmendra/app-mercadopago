@@ -11,4 +11,4 @@ export const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
 export const INTEGRATOR_ID = process.env.INTEGRATOR_ID;
 
 // URL donde se recibiran las notificaciones
-export const NOTIF_URL = process.env.NOTIF_URL;
+export const NOTIF_URL = process.env.NOTIF_URL + '/payment-mercadopago/webhook';
